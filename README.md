@@ -12,6 +12,19 @@ I found a workaround to make deceiver work and keep the language settings... It 
 
 So the idea is simple: let Deceive launch and hook to RiotClient.exe WITHOUT the game parameter, then the code launches a LeagueClient.exe instance. Not very stylish, but this works fine on my end.
 
+Currently, the only workaround that works to have your Client language different than your forced region language is to:
+
+1. Log in to your server
+2. Close the client without signing out
+3. Go to `<your Riot Games folder>`/League of Legends/Config
+4. Open LeagueClientSettings.yaml in a text editor
+5. Replace the value in the locale line—the one below globals—with the value that corresponds to your designated language (see table below)
+6. Make sure the value in the region line matches the region code of your server (see table here https://nemo.gg/blog/change-the-language-and-voiceover-in-lol/).
+7. Start the League of Legends client using 
+
+Deceiver has nothing to do with the configuration above. Deceiver is only meant to hide you from your friends (Appear offline).
+
+### Fork modifications:
 From Line 135 in StartupHandler.cs:
 
 ```
