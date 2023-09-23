@@ -30,7 +30,7 @@ Currently, the only workaround that works to have your Client language different
 
   ```
 7. Make sure the value in the region line matches the region code of your server (see table here https://nemo.gg/blog/change-the-language-and-voiceover-in-lol/).
-8. Start the League of Legends client using `<your Riot Games folder>`/League of Legends/LeagueClient.exe DO NOT OPEN League of Legends using RiotClientServices.exe or your default desktop shortcut. It will override the settings and change you back to the region language. Always use RiotClient.exe or this version of Deceiver.
+8. Start the League of Legends client using `<your Riot Games folder>`/League of Legends/LeagueClient.exe DO NOT OPEN League of Legends using RiotClientServices.exe or your default desktop shortcut. It will override the settings and change you back to the region language. Always use **LeagueClient.exe** or this version of Deceiver.
 
 ### Fork modifications:
 From Line 135 in StartupHandler.cs:
