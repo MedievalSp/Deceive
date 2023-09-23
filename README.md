@@ -9,7 +9,7 @@
 # Download the modified exe here: https://drive.google.com/uc?id=1An6ICPxGdCFop-CFkDPbFe90ZoHyYpQD
 # Read the instructions below to change your language
 
-Deceiver has nothing to do with the laugnage configuration. Deceiver is only meant to hide you from your friends (Appear offline). For the language settings follow the steps below. It works with or without Deceiver as of September 2023.
+Deceiver has nothing to do with the laugnage configuration. Deceiver is only meant to hide you from your friends (Appear offline). For the language settings follow the steps below. It works with or without Deceiver as of September 2023. The shortcut method with the `-locale=en_US` was disabled in September 20, 2023.
 
 I found a workaround to make Deceiver work and keep the language settings... It turns out that what forces the languages overrides in LeagueClientSettings.yaml is the dumb RiotClient.exe launching the LeagueClient.exe
 
