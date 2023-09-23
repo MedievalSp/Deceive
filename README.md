@@ -20,9 +20,17 @@ Currently, the only workaround that works to have your Client language different
 2. Close the client without signing out
 3. Go to `<your Riot Games folder>`/League of Legends/Config
 4. Open LeagueClientSettings.yaml in a text editor
-5. Replace the value in the locale line—the one below globals—with the value that corresponds to your designated language (see table below)
-6. Make sure the value in the region line matches the region code of your server (see table here https://nemo.gg/blog/change-the-language-and-voiceover-in-lol/).
-7. Start the League of Legends client using 
+5. Replace the value in the locale line globals with the value that corresponds to your designated language (see table below) for example:
+```
+...
+      globals:
+        locale: "en_US"
+        region: "LA1"
+...
+
+  ```
+7. Make sure the value in the region line matches the region code of your server (see table here https://nemo.gg/blog/change-the-language-and-voiceover-in-lol/).
+8. Start the League of Legends client using 
 
 Deceiver has nothing to do with the configuration above. Deceiver is only meant to hide you from your friends (Appear offline).
 
