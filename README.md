@@ -4,9 +4,9 @@
 
 # :tophat: Deceive
 
-# This is a fork! find the original deceive in https://github.com/molenzwiebel/Deceive all credits to the owner.
+## This is a fork! find the original deceive in https://github.com/molenzwiebel/Deceive all credits to the owner.
 
-Download the modified exe here: https://drive.google.com/uc?id=1An6ICPxGdCFop-CFkDPbFe90ZoHyYpQD
+# Download the modified exe here: https://drive.google.com/uc?id=1An6ICPxGdCFop-CFkDPbFe90ZoHyYpQD
 
 Deceiver has nothing to do with the laugnage configuration. Deceiver is only meant to hide you from your friends (Appear offline). For the language settings follow the steps below. It works with or without Deceiver as of September 2023.
 
