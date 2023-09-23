@@ -135,21 +135,38 @@ internal static class StartupHandler
         // Step 4: Launch Riot Client (+game)
         var startArgs = new ProcessStartInfo { FileName = riotClientPath, Arguments = $"--client-config-url=\"http://127.0.0.1:{proxyServer.ConfigPort}\"" };
 
-        if (launchProduct is not null)
-            startArgs.Arguments += $" --launch-product={launchProduct} --launch-patchline={gamePatchline}";
+        // *** Modification Starts *** //
+        // This argument causes RiotClient to autostart LOL causing custom languages settings to get blown up.
+        //if (launchProduct is not null)
+        //    startArgs.Arguments += $" --launch-product={launchProduct} --launch-patchline={gamePatchline}";
 
+        //Pass any custom params used in deceive.exe --riot-client-params=""
         if (riotClientParams is not null)
             startArgs.Arguments += $" {riotClientParams}";
 
+        // Pass any custom params used in deceive.exe --game-params=""
         if (gameParams is not null)
             startArgs.Arguments += $" -- {gameParams}";
 
         Trace.WriteLine($"About to launch Riot Client with parameters:\n{startArgs.Arguments}");
         var riotClient = Process.Start(startArgs);
+
+        // Get LeagueClient.exe path
+        var LeagueClientPath = riotClientPath.Replace("Riot Client/RiotClientServices.exe", "League of Legends/LeagueClient.exe");
+
+        // Nasty, but the only way I could get this to work was to wait for the actual Riot Client to complete bootstrapping
+        await Task.Delay(2000);
+
+        // Launch LeagueClient manually without any params. This method preserves the language settings in LeagueClientSettings.yaml
+        Process.Start(LeagueClientPath);
+        
+        // *** Modification Ends *** //
+
         // Kill Deceive when Riot Client has exited, so no ghost Deceive exists.
         if (riotClient is not null)
         {
             ListenToRiotClientExit(riotClient);
+
         }
 
         // Step 5: Get chat server and port for this player by listening to event from ConfigProxy.

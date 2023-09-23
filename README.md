@@ -4,6 +4,55 @@
 
 # :tophat: Deceive
 
+# This is a fork! find the original deceive in https://github.com/molenzwiebel/Deceive all credits to the owner.
+
+Download the modified exe here: https://drive.google.com/uc?id=1An6ICPxGdCFop-CFkDPbFe90ZoHyYpQD
+
+I found a workaround to make deceiver work and keep the language settings... It turns out that what forces the languages overrides in LeagueClientSettings.yaml is the dumb RiotClient.exe launching the LeagueClient.exe
+
+So the idea is simple: let Deceive launch and hook to RiotClient.exe WITHOUT the game parameter, then the code launches a LeagueClient.exe instance. Not very stylish, but this works fine on my end.
+
+From Line 135 in StartupHandler.cs:
+
+```
+ // Step 4: Launch Riot Client (+game)
+        var startArgs = new ProcessStartInfo { FileName = riotClientPath, Arguments = $"--client-config-url=\"http://127.0.0.1:{proxyServer.ConfigPort}\"" };
+
+        // *** Modification Starts *** //
+        // This argument causes RiotClient to autostart LOL causing custom languages settings to get blown up.
+        //if (launchProduct is not null)
+        //    startArgs.Arguments += $" --launch-product={launchProduct} --launch-patchline={gamePatchline}";
+
+        //Pass any custom params used in deceive.exe --riot-client-params=""
+        if (riotClientParams is not null)
+            startArgs.Arguments += $" {riotClientParams}";
+
+        // Pass any custom params used in deceive.exe --game-params=""
+        if (gameParams is not null)
+            startArgs.Arguments += $" -- {gameParams}";
+
+        Trace.WriteLine($"About to launch Riot Client with parameters:\n{startArgs.Arguments}");
+        var riotClient = Process.Start(startArgs);
+
+        // Get LeagueClient.exe path
+        var LeagueClientPath = riotClientPath.Replace("Riot Client/RiotClientServices.exe", "League of Legends/LeagueClient.exe");
+
+        // Nasty, but the only way I could get this to work was to wait for the actual Riot Client to complete bootstrapping
+        await Task.Delay(2000);
+
+        // Launch LeagueClient manually without any params. This method preserves the language settings in LeagueClientSettings.yaml
+        Process.Start(LeagueClientPath);
+        
+        // *** Modification Ends *** //
+
+        // Kill Deceive when Riot Client has exited, so no ghost Deceive exists.
+        if (riotClient is not null)
+        {
+            ListenToRiotClientExit(riotClient);
+
+        }
+```
+
 Deceive allows you to appear offline in League of Legends, VALORANT and Legends of Runeterra without any loss of functionality! Talk to your friends, communicate in champion select and queue up together, all while sneakily appearing offline to all your friends.
 
 Once started, Deceive will be a little icon in your notification tray that allows you to manage your chat presence, whether it be online, offline, or moblie.
