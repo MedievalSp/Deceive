@@ -8,7 +8,9 @@
 
 Download the modified exe here: https://drive.google.com/uc?id=1An6ICPxGdCFop-CFkDPbFe90ZoHyYpQD
 
-I found a workaround to make deceiver work and keep the language settings... It turns out that what forces the languages overrides in LeagueClientSettings.yaml is the dumb RiotClient.exe launching the LeagueClient.exe
+Deceiver has nothing to do with the laugnage configuration. Deceiver is only meant to hide you from your friends (Appear offline). For the language settings follow the steps below. It works with or without Deceiver as of September 2023.
+
+I found a workaround to make Deceiver work and keep the language settings... It turns out that what forces the languages overrides in LeagueClientSettings.yaml is the dumb RiotClient.exe launching the LeagueClient.exe
 
 So the idea is simple: let Deceive launch and hook to RiotClient.exe WITHOUT the game parameter, then the code launches a LeagueClient.exe instance. Not very stylish, but this works fine on my end.
 
