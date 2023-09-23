@@ -30,7 +30,7 @@ Currently, the only workaround that works to have your Client language different
 
   ```
 7. Make sure the value in the region line matches the region code of your server (see table here https://nemo.gg/blog/change-the-language-and-voiceover-in-lol/).
-8. Start the League of Legends client using 
+8. Start the League of Legends client using RiotClient.exe. DO NOT OPEN League of Legends using RiotClientServices.exe or your default desktop language. It will override the settings and change you back to the region language. Always use RiotClient.exe or this version of Deceiver.
 
 Deceiver has nothing to do with the configuration above. Deceiver is only meant to hide you from your friends (Appear offline).
 
